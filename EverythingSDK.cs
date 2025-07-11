@@ -6,8 +6,11 @@ namespace everything_avalonia
 {
     public static class EverythingSDK
     {
+        private const string EVERYTHING_DLL = "Everything64.dll";
+
+
         // Basic search functions
-        [DllImport("Everything64.dll", CharSet = CharSet.Unicode)]
+    [DllImport("Everything64.dll", CharSet = CharSet.Unicode)]
         public static extern void Everything_SetSearchW(string lpSearchString);
 
         [DllImport("Everything64.dll")]
@@ -16,9 +19,11 @@ namespace everything_avalonia
         [DllImport("Everything64.dll")]
         public static extern int Everything_GetNumResults();
 
-        [DllImport("Everything64.dll", CharSet = CharSet.Unicode)]
-        public static extern void Everything_GetResultFullPathW(int nIndex, StringBuilder lpString, int nMaxCount);
-
+    // THIS IS THE LINE TO CHANGE (Function Name and CharSet)
+        [DllImport(EVERYTHING_DLL, CharSet = CharSet.Unicode, EntryPoint = "Everything_GetResultFullPathNameW")]
+        public static extern void Everything_GetResultFullPathNameW(int nIndex, StringBuilder lpString, int nMaxCount);
+    // ^^^ Changed from Everything_GetResultFullPathW to Everything_GetResultFullPathNameW
+    //     And added EntryPoint explicitly to be sure.
         [DllImport("Everything64.dll")]
         public static extern void Everything_CleanUp();
 

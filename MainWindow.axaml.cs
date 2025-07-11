@@ -72,7 +72,7 @@ public partial class MainWindow : Window
 
         for (int i = 0; i < numResults; i++)
         {
-            EverythingSDK.Everything_GetResultFullPathW(i, pathBuilder, pathBuilder.Capacity);
+            EverythingSDK.Everything_GetResultFullPathNameW(i, pathBuilder, pathBuilder.Capacity);
             resultsList.Add(new SearchResult { FullPath = pathBuilder.ToString() });
         }
 
