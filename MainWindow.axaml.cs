@@ -29,6 +29,12 @@ public partial class MainWindow : Window
         // This will now work because the files are in sync
         InitializeComponent();
 
+                // Initialize Everything SDK
+        if (!EverythingSDK.Everything_IsDBLoaded())
+        {
+            Console.WriteLine("Everything database is not loaded. Make sure Everything is running.");
+        }
+
         _searchTextBox = this.FindControl<TextBox>("SearchTextBox")!;
         _resultsListBox = this.FindControl<ListBox>("ResultsListBox")!;
         var searchButton = this.FindControl<Button>("SearchButton")!;
@@ -62,7 +68,7 @@ public partial class MainWindow : Window
 
         int numResults = EverythingSDK.Everything_GetNumResults();
         var resultsList = new List<SearchResult>();
-        StringBuilder pathBuilder = new StringBuilder(260);
+        StringBuilder pathBuilder = new(260);
 
         for (int i = 0; i < numResults; i++)
         {
