@@ -1,0 +1,37 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        
+        xmlns:local="clr-namespace:everything_avalonia"
+
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="everything_avalonia.MainWindow"
+        Title="Everything Search">
+
+    <Grid Margin="15" RowDefinitions="Auto, *">
+
+        <!-- Search Panel -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="10" Margin="0,0,0,10">
+            <TextBox Name="SearchTextBox" Watermark="Enter search query..." Width="400" VerticalAlignment="Center" />
+            <Button Name="SearchButton" Content="Search" Padding="10,5" />
+        </StackPanel>
+
+        <!-- Results List -->
+        <ListBox Name="ResultsListBox" Grid.Row="1">
+            <ListBox.ItemTemplate>
+                
+                <!-- STEP 2: Tell the DataTemplate it will be displaying SearchResult objects -->
+                <DataTemplate x:DataType="local:SearchResult">
+
+                    <Grid ColumnDefinitions="250, *" Margin="0,5">
+                        <TextBlock Grid.Column="0" Text="{Binding Name}" TextTrimming="CharacterEllipsis" />
+                        <TextBlock Grid.Column="1" Text="{Binding FullPath}" TextTrimming="CharacterEllipsis" />
+                    </Grid>
+
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+    </Grid>
+</Window>
